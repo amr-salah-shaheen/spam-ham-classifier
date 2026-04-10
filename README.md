@@ -127,7 +127,7 @@ Then open [http://localhost:8501](http://localhost:8501) in your browser.
 Open and run all cells in the notebook:
 
 ```bash
-jupyter notebook "notebook/spam or ham - text classification.ipynb"
+jupyter notebook "notebook/spam-ham-classifier.ipynb"
 ```
 
 Re-running the notebook regenerates the serialized model artifact in the `model/` folder.
@@ -156,3 +156,4 @@ The app loads the saved `.pkl` model artifact and uses its embedded scikit-learn
 | Visualisation     | `matplotlib`, `seaborn`                |
 
 ---
+"# spam-ham-classifier" 
