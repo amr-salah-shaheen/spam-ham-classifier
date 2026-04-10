@@ -1,0 +1,19 @@
+# Install with: pip install -r requirements.txt
+
+# ── Core ──
+numpy
+pandas
+
+# ── Machine Learning ──
+scikit-learn
+
+# ── NLP ──
+nltk
+
+# ── Web App ──
+streamlit
+joblib
+
+# ── Visualisation ──
+matplotlib
+seaborn
