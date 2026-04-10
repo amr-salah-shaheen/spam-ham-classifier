@@ -156,4 +156,3 @@ The app loads the saved `.pkl` model artifact and uses its embedded scikit-learn
 | Visualisation     | `matplotlib`, `seaborn`                |
 
 ---
-"# spam-ham-classifier" 
