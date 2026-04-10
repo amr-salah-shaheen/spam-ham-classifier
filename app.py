@@ -1,9 +1,33 @@
 import joblib
+import re
 import streamlit as st
+import pandas as pd
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import PorterStemmer, WordNetLemmatizer
 
 st.set_page_config(page_title="Spam/Ham Classifier", page_icon="📩", layout="wide")
 
 MODEL_PATH = "model/best_spam_model.pkl"
+STEMMER = PorterStemmer()
+EN_STOPWORDS = set(stopwords.words("english"))
+
+def preprocess_text(text, normalize):
+    text = str(text).lower()
+    text = re.sub(r"[^a-zA-Z0-9\s]", " ", text)
+    text = re.sub(r"\d+", " ", text)
+    tokens = word_tokenize(text)
+    tokens = [t for t in tokens if t not in EN_STOPWORDS]
+    tokens = [STEMMER.stem(t) for t in tokens]
+
+    cleaned = " ".join(tokens)
+    cleaned = re.sub(r"\s+", " ", cleaned).strip()
+    return cleaned
+
+def preprocess_stem(X):
+    if isinstance(X, pd.Series):
+        return X.apply(lambda t: preprocess_text(t, normalize="stem"))
+    return pd.Series(X).apply(lambda t: preprocess_text(t, normalize="stem"))
 
 @st.cache_resource
 def load_pipeline(model_path: str):
